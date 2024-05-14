@@ -86,19 +86,21 @@ function App() {
     if (!hasCharacter(input.toUpperCase())) {
       setTries((prev) => prev - 1);
     } else {
-      setGuessWord(updateGuessedState(input));
+      updateGuessedState(input);
     }
 
     setInput("");
   };
 
   const updateGuessedState = (searchText: string) => {
-    return guessWord.map((word) => {
+    const updatedGuessWord = guessWord.map((word) => {
       if (word.text === searchText.toUpperCase()) {
         return { ...word, guessed: true };
       }
       return word;
     });
+
+    setGuessWord(updatedGuessWord);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
